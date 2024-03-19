@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "fullName": "KK",
+    "email": "EmKangKangBanOpKoDinhPhatNao@example.com",
+    "birthday": "1990-05-15",
+    "username": "user1",
+    "password": "12345678"
+  },
+  {
+    "id": 2,
+    "fullName": "SIUUUUUUUUUUUUUUUUUUUU",
+    "email": "SUUUUUUUUUUU@example.com",
+    "birthday": "1985-12-10",
+    "username": "secretary1",
+    "password": "12345678"
+  },
+  {
+    "id": 3,
+    "fullName": "NguoiTrongHang",
+    "email": "mauquytronghuyetquan@maimotmaudo.com",
+    "birthday": "1988-09-22",
+    "username": "admin",
+    "password": "12345678"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 101,
+    "name": "Department of Defense"
+  },
+  {
+    "id": 102,
+    "name": "Police"
+  },
+  {
+    "id": 103,
+    "name": "Foreign Office"
+  },
+  {
+    "id": 104,
+    "name": "Ministry of Home Affairs"
+  },
+  {
+    "id": 105,
+    "name": "Judicial"
+  },
+  {
+    "id": 106,
+    "name": "Ministry of Planning and Investment"
+  },
+  {
+    "id": 107,
+    "name": "The financial"
+  },
+  {
+    "id": 108,
+    "name": "Ministry of Industry and Trade"
+  },
+  {
+    "id": 109,
+    "name": "Ministry of Agriculture and Rural Development"
+  },
+  {
+    "id": 110,
+    "name": "The transportation"
+  },
+  {
+    "id": 111,
+    "name": "Ministry of Construction"
+  },
+  {
+    "id": 112,
+    "name": "Ministry of Natural Resources and Environment"
+  },
+  {
+    "id": 113,
+    "name": "Ministry of Information and Communications"
+  },
+  {
+    "id": 114,
+    "name": "Ministry of Labor, War Invalids and Social Affairs"
+  },
+  {
+    "id": 115,
+    "name": "Ministry of Culture"
+  }
+]

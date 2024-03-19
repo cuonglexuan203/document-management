@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "role": "ROLE_ADMIN"
+  },
+  {
+    "id": 2,
+    "role": "ROLE_SECRETARY"
+  },
+  {
+    "id": 3,
+    "role": "ROLE_USER"
+  }
+]

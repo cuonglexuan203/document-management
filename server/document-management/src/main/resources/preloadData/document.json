@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "title": "Document for Department of Defense",
+    "thumbnail": "/images/defense1.png",
+    "version": "1.0",
+    "addedTime": "2022-03-17T12:00:00Z",
+    "description": "Responsible for national defense and military affairs.",
+    "path": "/pdf/defense1.pdf"
+  },
+  {
+    "id": 2,
+    "title": "Document for Police",
+    "thumbnail": "/images/police1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-18T10:30:00Z",
+    "description": "Responsible for law enforcement and public safety.",
+    "path": "/pdf/police1"
+  },
+  {
+    "id": 3,
+    "title": "Document for Foreign Office",
+    "thumbnail": "/images/foreign1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-19T08:45:00Z",
+    "description": "Handles diplomatic relations and international affairs.",
+    "path": "/pdf/foreign1"
+  },
+  {
+    "id": 4,
+    "title": "Document for Ministry of Home Affairs",
+    "thumbnail": "/images/homeaffairs1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-20T11:15:00Z",
+    "description": "Oversees domestic affairs and governance.",
+    "path": "/pdf/homeaffairs1"
+  },
+  {
+    "id": 5,
+    "title": "Document for Judicial",
+    "thumbnail": "/images/judicial1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-21T09:30:00Z",
+    "description": "Administers justice and legal affairs.",
+    "path": "/pdf/judicial1"
+  },
+  {
+    "id": 6,
+    "title": "Document for Ministry of Planning and Investment",
+    "thumbnail": "/images/planninginvestment1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-22T10:00:00Z",
+    "description": "Develops economic plans and attracts investments.",
+    "path": "/pdf/planninginvestment1"
+  },
+  {
+    "id": 7,
+    "title": "Document for The financial",
+    "thumbnail": "/images/financial1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-23T12:30:00Z",
+    "description": "Manages the financial affairs of the government.",
+    "path": "/pdf/financial1"
+  },
+  {
+    "id": 8,
+    "title": "Document for Ministry of Industry and Trade",
+    "thumbnail": "/images/industrytrade1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-24T11:45:00Z",
+    "description": "Promotes industrial development and trade policies.",
+    "path": "/pdf/industrytrade1"
+  },
+  {
+    "id": 9,
+    "title": "Document for Ministry of Agriculture and Rural Development",
+    "thumbnail": "/images/agriculture1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-25T09:00:00Z",
+    "description": "Oversees agricultural policies and rural development.",
+    "path": "/pdf/agriculture1"
+  },
+  {
+    "id": 10,
+    "title": "Document for The transportation",
+    "thumbnail": "/images/transportation1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-26T10:45:00Z",
+    "description": "Handles transportation infrastructure and policies.",
+    "path": "/pdf/transportation1"
+  },
+  {
+    "id": 11,
+    "title": "Document for Ministry of Construction",
+    "thumbnail": "/images/construction1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-27T08:15:00Z",
+    "description": "Plans and develops construction projects and infrastructure.",
+    "path": "/pdf/construction1"
+
+  },
+  {
+    "id": 12,
+    "title": "Document for Ministry of Natural Resources and Environment",
+    "thumbnail": "/images/environment1.jpg",
+    "version": "1.0",
+    "addedTime": "2022-03-28T09:45:00Z",
+    "description": "Responsible for environmental protection and conservation.",
+    "path": "/pdf/environment1"
+  }
+]
