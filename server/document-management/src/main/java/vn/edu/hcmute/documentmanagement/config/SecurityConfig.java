@@ -21,7 +21,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/documents").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/documents/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/ministries/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/search").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

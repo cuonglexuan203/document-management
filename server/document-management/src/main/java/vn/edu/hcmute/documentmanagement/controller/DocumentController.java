@@ -34,8 +34,7 @@ public class DocumentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DocumentDto> getDocument(@PathVariable long id, @AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
-        log.info("username: {}, fullname: {}", user.getUsername(), user.getAuthorities());
+    public ResponseEntity<DocumentDto> getDocument(@PathVariable long id) {
         String errorMessage = "Document not found with id: " + id;
         return ResponseEntity.ok(DocumentDto.of(documentService.getDocumentByIdOrElseThrow(id, errorMessage)));
     }

@@ -18,7 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/documents")
+@RequestMapping("/search")
 @CrossOrigin(origins = "*")
 public class SearchController {
     private final DocumentService documentService;
@@ -26,9 +26,9 @@ public class SearchController {
         this.documentService = documentService;
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<SearchDto> searchDocument(@RequestParam(defaultValue = "document") String keyword,
-                                                    @RequestParam(defaultValue = "-1") int page) {
+    @GetMapping
+    public ResponseEntity<SearchDto> searchDocument(@RequestParam(name = "q",defaultValue = "", required = false) String keyword,
+                                                    @RequestParam(name = "page",defaultValue = "0",required = false) int page) {
         int size = 10;
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(SearchDto.of(documentService.getDocumentByTitle(keyword, pageable)));
