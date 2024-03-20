@@ -1,9 +1,10 @@
-"use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { FaSearch, FaUserCircle, FaUpload } from "react-icons/fa";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -11,35 +12,67 @@ const Header = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const fetchSearchSuggestions = (searchTerm) => {
+    // Implement your search suggestion fetching logic here
+    setSearchSuggestions(["Version 3", "Version 2", "Version 1"]);
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (value.length > 2) {
+      fetchSearchSuggestions(value);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+    }
+  };
+
   return (
-    <header className="sticky op-0 w-full px-4 bg-white text-gray-800 shadow-md z-50">
+    <header className="sticky top-0 w-full px-4 bg-white text-gray-800 shadow-md z-50">
       <div className="container mx-auto flex justify-between items-center py-4">
         <div className="flex items-center space-x-3">
-          <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-            <Image
-              className="mb-4 rounded-lg"
-              src="/images/logo/logo.png"
-              alt="Logo"
-              width={100}
-              height={100}
-            />
-          </div>
-          <span className="text-2xl font-semibold justify-between">
+          <Image
+            className="rounded-lg"
+            src="/images/logo/logo.png"
+            alt="Logo"
+            width={100}
+            height={100}
+          />
+          <span className="text-2xl font-semibold">
             Government Documentation
           </span>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="relative">
           <input
-            type="text"
+            type="search"
             name="search"
-            placeholder="Documentation"
-            className="px-4 py-2 border rounded-md"
+            placeholder="Search Documentation..."
+            className="block w-[550px] p-4 pl-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
+            required
           />
-          <button className="p-2 bg-gray-200 rounded-md">Search</button>
+          <button
+            type="submit"
+            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Search
+          </button>
+          {searchSuggestions.length > 0 && (
+            <ul className="absolute z-10 left-0 mt-1 py-2 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+              {searchSuggestions.map((suggestion, index) => (
+                <li key={index} className="px-4 py-2 hover:bg-gray-100">
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        <nav className="space-x-4">
+        <nav className="space-x-10">
           <a href="/" className="hover:text-blue-500">
             Home
           </a>
@@ -53,14 +86,14 @@ const Header = () => {
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="p-2 hover:bg-gray-200 rounded-full"
+            className="p-2 hover:bg-gray-300 rounded-full"
             aria-haspopup="true"
             aria-expanded={isDropdownOpen}
           >
-            User
+            <FaUserCircle className="text-5xl" />
           </button>
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded shadow-xl">
+            <div className="absolute right-0 mt-2 py-2 w-40 bg-white border rounded shadow-xl">
               {isLoggedIn ? (
                 <>
                   <a
