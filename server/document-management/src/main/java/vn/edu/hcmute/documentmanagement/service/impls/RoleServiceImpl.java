@@ -1,6 +1,7 @@
 package vn.edu.hcmute.documentmanagement.service.impls;
 
 import org.springframework.stereotype.Service;
+import vn.edu.hcmute.documentmanagement.exception.ResourceNotFoundException;
 import vn.edu.hcmute.documentmanagement.model.Ministry;
 import vn.edu.hcmute.documentmanagement.model.Role;
 import vn.edu.hcmute.documentmanagement.repository.RoleRepository;
@@ -8,6 +9,7 @@ import vn.edu.hcmute.documentmanagement.service.RoleService;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -44,5 +46,11 @@ public class RoleServiceImpl implements RoleService {
             }
         });
         return roleRepo.saveAll(roles);
+    }
+
+    @Override
+    public Role getRoleByIdOrElseThrow(long id, String messageError) {
+        Role role = roleRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException(messageError));
+        return role;
     }
 }
