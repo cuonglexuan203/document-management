@@ -1,10 +1,9 @@
 package vn.edu.hcmute.documentmanagement.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import vn.edu.hcmute.documentmanagement.model.Document;
 import vn.edu.hcmute.documentmanagement.model.Ministry;
-import vn.edu.hcmute.documentmanagement.repository.DocumentRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +16,7 @@ public interface DocumentService {
     Optional<Document> getDocumentById(long id);
     Document getDocumentByIdOrElseThrow(long id, String message);
     List<Document> getDocumentByTitle(String keyword);
-    List<Document> getDocumentByTitle(String keyword, Pageable paginator);
+    Page<Document> getDocumentByTitle(String keyword, Pageable paginator);
     List<Document> getDocumentByVersion(String version);
     List<Document> getDocumentByVersion(String version, Pageable paginator);
     List<Document> getDocumentByMinistry(Ministry ministry);
