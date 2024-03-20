@@ -14,12 +14,22 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class MinistryDto {
-
-    @Builder.Default
+    @Min(value = 0)
+    private long id = 0;
     @NotNull
-    private List<String> ministries = new ArrayList<>();
+    private String ministry;
 
-    public static MinistryDto of(List<Ministry> ministries){
-        return MinistryDto.builder().ministries(ministries.stream().map(Ministry::getName).toList()).build();
+    public static MinistryDto of(Ministry ministries) {
+        MinistryDto ministryDto = new MinistryDto().builder()
+                .id(ministries.getId())
+                .ministry((ministries.getName()))
+                .build();
+        return ministryDto;
     }
+
+    public static List<MinistryDto> of(List<Ministry> ministries){
+        List<MinistryDto> ministryDtos = ministries.stream().map(MinistryDto::of).toList();
+        return  ministryDtos;
+    }
+
 }

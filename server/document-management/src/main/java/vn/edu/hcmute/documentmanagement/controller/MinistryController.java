@@ -22,8 +22,8 @@ public class MinistryController {
     }
 
     @GetMapping
-    public ResponseEntity<MinistryDto> getMinistries(){
-        return ResponseEntity.ok(MinistryDto.builder().ministries(ministryService.getAllMinistryNames()).build());
+    public ResponseEntity<List<MinistryDto>> getMinistries(){
+        return ResponseEntity.ok(MinistryDto.of(ministryService.getAllMinistries()));
     }
 
 }
