@@ -34,7 +34,7 @@ function SideNav({ sidebarOpen, setSidebarOpen }: any) {
       const tempMinistryMap = {};
 
       documents.forEach((doc) => {
-        const ministryKey = doc.ministryId || doc.ministry;
+        const ministryKey = doc.ministryId;
         if (!tempMinistryMap[ministryKey]) {
           tempMinistryMap[ministryKey] = [];
         }
@@ -43,7 +43,7 @@ function SideNav({ sidebarOpen, setSidebarOpen }: any) {
 
       const ministryDocs = ministries.map((ministry) => ({
         ministry: ministry,
-        documents: tempMinistryMap[ministry.id || ministry.name] || [],
+        documents: tempMinistryMap[ministry.id] || [],
       }));
 
       setMinistryDocuments(ministryDocs);
@@ -61,9 +61,9 @@ function SideNav({ sidebarOpen, setSidebarOpen }: any) {
   const sidebarClass = sidebarOpen ? "sidebar-expanded" : "";
 
   return (
-    <div className="relative">
+    <div className="relative hide-scrollbar">
       <div
-        className={`relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[25rem] p-4 shadow-xl shadow-blue-gray-900/5 ${sidebarClass}`}
+        className={`relative flex flex-col bg-clip-border hide-scrollbar rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[25rem] p-4 shadow-xl shadow-blue-gray-900/5 ${sidebarClass}`}
       >
         <div className="mb-2 p-4">
           <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-gray-900">
@@ -71,7 +71,7 @@ function SideNav({ sidebarOpen, setSidebarOpen }: any) {
           </h5>
         </div>
         <div className="sidebar-content overflow-y-auto max-h-[calc(100vh-10rem)]">
-          <nav className="flex flex-col gap-1 min-w-[240px] p-2 text-x1 font-semibold text-gray-700 scrollbar-hidden">
+          <nav className="flex flex-col gap-1 min-w-[240px] p-2 text-x1 font-semibold text-gray-700 hide-scrollbar">
             {ministryDocuments.map((ministryDoc: MinistryDocument) => {
               const ministry = ministryDoc.ministry;
               const ministryId = ministry.id;
