@@ -10,13 +10,18 @@ export const documentsApi = createApi({
         // credentials: "include"
     }),
     refetchOnReconnect: true,
-    tagTypes: ["documents"],
+    tagTypes: ["documents", "document"],
     endpoints: (builder) => ({
         getDocuments: builder.query<Document[], null>({
             query: () => "documents",
             providesTags: ["documents"]
         }),
+        getDocumentById: builder.query<Document, null>({
+            query: (id) => `documents/${id}`,
+            providesTags: ["document"]
+        }),
     }),
+    
 });
 
-export const { useGetDocumentsQuery } = documentsApi;
+export const { useGetDocumentsQuery, useGetDocumentByIdQuery } = documentsApi;
