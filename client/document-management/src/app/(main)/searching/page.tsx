@@ -1,8 +1,11 @@
 import React from 'react'
+import Searchlist from '../_components/Searchlist'
 
 const SearchingPage = () => {
     return (
-        <div>SearchingPage</div>
+        <div>
+            <Searchlist/>
+        </div>
     )
 }
 
