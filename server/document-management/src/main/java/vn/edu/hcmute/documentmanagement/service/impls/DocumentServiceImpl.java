@@ -1,6 +1,7 @@
 package vn.edu.hcmute.documentmanagement.service.impls;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.edu.hcmute.documentmanagement.exception.ResourceNotFoundException;
@@ -49,9 +50,15 @@ public class DocumentServiceImpl implements DocumentService {
         return documents;
     }
 
+//    @Override
+//    public List<Document> getDocumentByTitle(String keyword, Pageable paginator) {
+//        List<Document> documents = docRepo.findByTitleContainingIgnoreCase(keyword, paginator).getContent();
+//        return documents;
+//    }
+
     @Override
-    public List<Document> getDocumentByTitle(String keyword, Pageable paginator) {
-        List<Document> documents = docRepo.findByTitleContainingIgnoreCase(keyword, paginator).getContent();
+    public Page<Document> getDocumentByTitle(String keyword, Pageable paginator) {
+        Page<Document> documents = docRepo.findByTitleContainingIgnoreCase(keyword, paginator);
         return documents;
     }
 
