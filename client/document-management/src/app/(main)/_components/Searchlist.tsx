@@ -30,25 +30,26 @@ const Searchlist = () => {
 
     return (
         <div className="mx-10 my-14">
-            {documents.map((document) => (
-                <div key={document.id}>
-                    <div className="block p-6 border rounded my-2">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
-                            <a href="#">{document.title}</a>
-                        </h5>
-                        <p className="font-normal text-gray-700 mb-2">
-                            <a href="#">Version: {document.version}</a>
-                        </p>
-                        <p className="font-normal text-gray-700 mb-2">
-                            <a href="#">{document.ministry}</a>
-                        </p>
-                        <p className="font-normal text-gray-700 mb-2">
-                            Time added: {document.addedTime}
-                        </p>
-                        <p className="font-normal text-gray-700 line-clamp-1">
-                            {document.description}
-                        </p>
-                    </div>
+            {documents.map((document, index) => (
+                <div
+                    key={document.id}
+                    className={`block p-6 border rounded my-2 ${index % 2 != 0 ? 'border-gray-100 bg-gray-100' : ''}`}
+                >
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                        <a href="#">{document.title}</a>
+                    </h5>
+                    <p className="font-normal text-gray-700 mb-2">
+                        <a href="#">Version: {document.version}</a>
+                    </p>
+                    <p className="font-normal text-gray-700 mb-2">
+                        <a href="#">{document.ministry}</a>
+                    </p>
+                    <p className="font-normal text-gray-700 mb-2">
+                        Time added: {document.addedTime}
+                    </p>
+                    <p className="font-normal text-gray-700 line-clamp-1">
+                        {document.description}
+                    </p>
                 </div>
             ))}
             {<div className="mt-5 flex justify-center items-center">
