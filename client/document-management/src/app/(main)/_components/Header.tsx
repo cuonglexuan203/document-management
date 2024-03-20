@@ -70,24 +70,22 @@ const Header = () => {
         </ul>
       )}
         </div>
-        <nav className="space-x-4">
+        <nav className="space-x-10">
           <a href="/" className="hover:text-blue-500">Home</a>
-          <a href="#" className="hover:text-blue-500">
-            <FaUpload className="inline mr-1" />Upload
-          </a>
+          <a href="#" className="hover:text-blue-500">Upload</a>
           <a href="/about" className="hover:text-blue-500">About</a>
         </nav>
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="p-2 hover:bg-gray-200 rounded-full"
+            className="p-2 hover:bg-gray-300 rounded-full"
             aria-haspopup="true"
             aria-expanded={isDropdownOpen}
           >
-            <FaUserCircle className="text-3xl" />
+            <FaUserCircle className="text-5xl" />
           </button>
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 py-2 w-48 bg-white border rounded shadow-xl">
+            <div className="absolute right-0 mt-2 py-2 w-40 bg-white border rounded shadow-xl">
               {isLoggedIn ? (
                 <>
                   <a href="/account" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Account</a>
