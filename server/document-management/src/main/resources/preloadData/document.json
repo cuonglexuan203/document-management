@@ -107,5 +107,73 @@
     "addedTime": "2022-03-28T09:45:00Z",
     "description": "Responsible for environmental protection and conservation.",
     "path": "/pdf/environment1"
+  },
+
+  {
+    "id": 13,
+    "title": "Document for Department of Defense",
+    "thumbnail": "/images/defense1.png",
+    "version": "2.0",
+    "addedTime": "2022-03-17T12:00:00Z",
+    "description": "Responsible for national defense and military affairs.",
+    "path": "/pdf/defense1.pdf"
+  },
+
+  {
+    "id": 14,
+    "title": "Document for Department of Defense",
+    "thumbnail": "/images/defense1.png",
+    "version": "3.0",
+    "addedTime": "2022-03-17T12:00:00Z",
+    "description": "Responsible for national defense and military affairs.",
+    "path": "/pdf/defense1.pdf"
+  },
+
+  {
+    "id": 13,
+    "title": "Document for Department of Defense",
+    "thumbnail": "/images/defense1.png",
+    "version": "4.0",
+    "addedTime": "2022-03-17T12:00:00Z",
+    "description": "Responsible for national defense and military affairs.",
+    "path": "/pdf/defense1.pdf"
+  },
+
+  {
+    "id": 14,
+    "title": "Document for Police",
+    "thumbnail": "/images/police1.jpg",
+    "version": "2.0",
+    "addedTime": "2022-03-18T10:30:00Z",
+    "description": "Responsible for law enforcement and public safety.",
+    "path": "/pdf/police1"
+  },
+
+  {
+    "id": 15,
+    "title": "Document for Foreign Office",
+    "thumbnail": "/images/foreign1.jpg",
+    "version": "2.0",
+    "addedTime": "2022-03-19T08:45:00Z",
+    "description": "Handles diplomatic relations and international affairs.",
+    "path": "/pdf/foreign1"
+  },
+  {
+    "id": 16,
+    "title": "Document for Foreign Office",
+    "thumbnail": "/images/foreign1.jpg",
+    "version": "3.0",
+    "addedTime": "2022-03-19T08:45:00Z",
+    "description": "Handles diplomatic relations and international affairs.",
+    "path": "/pdf/foreign1"
+  },
+  {
+    "id": 17,
+    "title": "Document for Foreign Office",
+    "thumbnail": "/images/foreign1.jpg",
+    "version": "4.0",
+    "addedTime": "2022-03-19T08:45:00Z",
+    "description": "Handles diplomatic relations and international affairs.",
+    "path": "/pdf/foreign1"
   }
 ]
