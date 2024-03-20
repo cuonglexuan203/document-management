@@ -19,10 +19,10 @@ public class MinistryDto {
     @NotNull
     private String ministry;
 
-    public static MinistryDto of(Ministry ministries) {
+    public static MinistryDto of(Ministry ministry) {
         MinistryDto ministryDto = new MinistryDto().builder()
-                .id(ministries.getId())
-                .ministry((ministries.getName()))
+                .id(ministry.getId())
+                .ministry((ministry.getName()))
                 .build();
         return ministryDto;
     }

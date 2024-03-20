@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Document, Ministry } from "../../_utils/types";
 
-export interface MinistryDocument{
-    ministry:Ministry,
+export interface MinistryDocument {
+    ministry: Ministry,
     documents: Document[],
 }
 
 export const documentsApi = createApi({
-    reducerPath: "productsApi",
+    reducerPath: "documentsApi",
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:5000/api",
         // credentials: "include"
@@ -32,7 +32,7 @@ export const documentsApi = createApi({
             providesTags: ["ministries"]
         }),
     }),
-    
+
 });
 
 export const { useGetDocumentsQuery, useGetDocumentByIdQuery, useGetMinistryByIdQuery, useGetMinistriesQuery } = documentsApi;

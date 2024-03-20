@@ -2,6 +2,7 @@ package vn.edu.hcmute.documentmanagement.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.edu.hcmute.documentmanagement.dto.MinistryDocumentDto;
 import vn.edu.hcmute.documentmanagement.dto.MinistryDto;
 import vn.edu.hcmute.documentmanagement.model.Ministry;
 import vn.edu.hcmute.documentmanagement.service.MinistryService;
@@ -28,5 +29,9 @@ public class MinistryController {
         String errorMessage = "Ministry not found with id: " + id;
         return ResponseEntity.ok(MinistryDto.of(ministryService.getMinistryByIdOrElseThrow(id, errorMessage)));
     }
-
+    @GetMapping("/documents")
+    public ResponseEntity<List<MinistryDocumentDto>> getDocuments(){
+        List<Ministry> ministries = ministryService.getAllMinistries();
+        return ResponseEntity.ok(ministries.stream().map(MinistryDocumentDto::of).toList());
+    }
 }
