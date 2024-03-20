@@ -43,4 +43,9 @@ public class UserDto {
                 .role(user.getRoles().stream().map(ele -> ele.getRole().name()).toList()).build();
         return userDto;
     }
+
+    public static List<UserDto> of(List<User> users){
+        List<UserDto> userDtos = users.stream().map(UserDto::of).toList();
+        return userDtos;
+    }
 }

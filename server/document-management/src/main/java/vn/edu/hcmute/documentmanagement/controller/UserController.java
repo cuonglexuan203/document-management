@@ -1,5 +1,6 @@
 package vn.edu.hcmute.documentmanagement.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.hcmute.documentmanagement.dto.UserDto;
 import vn.edu.hcmute.documentmanagement.model.User;
@@ -18,9 +19,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public UserDto getUser(@RequestParam(name = "id", defaultValue = "0") long id) {
+    @GetMapping()
+    public ResponseEntity<List<UserDto>> getAllUsers(){
+        return ResponseEntity.ok(UserDto.of(userService.getAllUsers()));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable long id) {
         String message = "User not found with id: " + id;
-        return UserDto.of(userService.getUserByIdOrElseThrow(id, message));
+        return ResponseEntity.ok(UserDto.of(userService.getUserByIdOrElseThrow(id, message)));
     }
 }
