@@ -14,7 +14,7 @@ function SideNav({ sidebarOpen, setSidebarOpen }: any) {
   }>({});
   const [ministryDocuments, setMinistryDocuments] = useState<
     MinistryDocument[]
-  >([]); // Change here
+  >([]);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -31,24 +31,21 @@ function SideNav({ sidebarOpen, setSidebarOpen }: any) {
 
   useEffect(() => {
     if (!documentsLoading && !ministriesLoading) {
-      const tempMinistryMap = {}; // Đối tượng tạm để gom nhóm các documents theo ministryId hoặc ministryName
+      const tempMinistryMap = {};
 
-      // Gom nhóm các documents theo ministryId hoặc ministryName
       documents.forEach((doc) => {
-        const ministryKey = doc.ministryId || doc.ministry; // Chọn key để gom nhóm (có thể là ministryId hoặc ministryName)
+        const ministryKey = doc.ministryId || doc.ministry;
         if (!tempMinistryMap[ministryKey]) {
           tempMinistryMap[ministryKey] = [];
         }
         tempMinistryMap[ministryKey].push(doc);
       });
 
-      // Tạo mảng MinistryDocument từ danh sách ministries và đối tượng gom nhóm
       const ministryDocs = ministries.map((ministry) => ({
         ministry: ministry,
-        documents: tempMinistryMap[ministry.id || ministry.name] || [], // Sử dụng ministry.id hoặc ministry.name để lấy mảng documents tương ứng
+        documents: tempMinistryMap[ministry.id || ministry.name] || [],
       }));
 
-      // Cập nhật state ministryDocuments
       setMinistryDocuments(ministryDocs);
     }
   }, [documentsLoading, ministriesLoading]);
