@@ -14,7 +14,7 @@ const Header = () => {
 
   const fetchSearchSuggestions = (searchTerm) => {
     // Implement your search suggestion fetching logic here
-    setSearchSuggestions(['Suggestion 1', 'Suggestion 2']);
+    setSearchSuggestions(['Version 3', 'Version 2', 'Version 1']);
   };
 
   const handleSearchChange = (e) => {
@@ -43,28 +43,32 @@ const Header = () => {
           />
           <span className="text-2xl font-semibold">Government Documentation</span>
         </div>
-        <div className="relative">
-          <input
-            type="text"
-            name="search"
-            placeholder="Search Documentation..."
-            className="search-input flex-grow px-12  w-[550px] py-2 border rounded-md"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            onKeyDown={handleKeyDown}
-          />
-          <button className="absolute right-3 top-3 text-lg text-gray-500">
-            <FaSearch />
+    <div className="relative">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search Documentation..."
+        className="block w-[550px] p-4 pl-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        onKeyDown={handleKeyDown}
+        required
+      />
+      <button
+            type="submit"
+            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Search
           </button>
-          {searchSuggestions.length > 0 && (
-            <ul className="absolute z-10 left-0 mt-2 py-2 w-full bg-white border rounded shadow-xl">
-              {searchSuggestions.map((suggestion, index) => (
-                <li key={index} className="px-4 py-2 hover:bg-gray-100">
-                  {suggestion}
-                </li>
-              ))}
-            </ul>
-          )}
+      {searchSuggestions.length > 0 && (
+        <ul className="absolute z-10 left-0 mt-1 py-2 w-full bg-white border border-gray-300 rounded-md shadow-lg">
+          {searchSuggestions.map((suggestion, index) => (
+            <li key={index} className="px-4 py-2 hover:bg-gray-100">
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
         </div>
         <nav className="space-x-4">
           <a href="/" className="hover:text-blue-500">Home</a>
