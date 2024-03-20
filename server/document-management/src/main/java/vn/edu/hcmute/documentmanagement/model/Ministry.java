@@ -1,5 +1,6 @@
 package vn.edu.hcmute.documentmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -27,8 +28,9 @@ public class Ministry {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
-    @OneToMany(mappedBy = "ministry", cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH}, orphanRemoval = true)
+    @OneToMany(mappedBy = "ministry", cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH}, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Document> documents = new ArrayList<>();
+
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

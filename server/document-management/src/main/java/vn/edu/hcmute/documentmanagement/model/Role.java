@@ -28,6 +28,7 @@ public class Role {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Getter
     public enum RoleLevel {
         ROLE_ADMIN,
         ROLE_SECRETARY,
