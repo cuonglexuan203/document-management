@@ -1,16 +1,21 @@
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetDocumentsQuery } from "../_store/services/documentApi";
 import { useAppDispatch } from "../_store/hooks";
 
-function SideNav({ sidebarOpen, setSidebarOpen, onDocumentClick }: any) {
+function SideNav({
+  sidebarOpen,
+  setSidebarOpen,
+  onDocumentClick,
+  onMinistryClick,
+}: any) {
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
   const [ministriesState, setMinistriesState] = useState<{
     [key: string]: boolean;
   }>({});
   const [selectedDocuments, setSelectedDocuments] = useState<any[]>([]);
-  const sidebar = useRef(null);
   const dispatch = useAppDispatch();
 
   const toggleSidebar = () => {
@@ -95,7 +100,7 @@ function SideNav({ sidebarOpen, setSidebarOpen, onDocumentClick }: any) {
         </div>
 
         <div className="sidebar-content overflow-y-auto max-h-[calc(100vh-10rem)]">
-          <nav className="flex flex-col gap-1 min-w-[240px] p-2 text-x1 font-semibold text-gray-700">
+          <nav className="flex flex-col gap-1 min-w-[240px] p-2 text-x1 font-semibold text-gray-700 scrollbar-hidden">
             {Object.keys(ministries).map((ministry) => (
               <div key={ministry}>
                 <li
@@ -105,7 +110,13 @@ function SideNav({ sidebarOpen, setSidebarOpen, onDocumentClick }: any) {
                   <button
                     type="button"
                     className="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:hs-accordion-active:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    onClick={() => toggleMinistry(ministry)}
+                    onClick={() => {
+                      toggleMinistry(ministry);
+                      onMinistryClick({
+                        name: ministry,
+                        documents: ministries[ministry],
+                      });
+                    }}
                   >
                     <div
                       className="mr-4"

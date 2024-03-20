@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Document } from "../../_utils/types";
+import { Document, Ministry } from "../../_utils/types";
 
 
 
@@ -10,7 +10,7 @@ export const documentsApi = createApi({
         // credentials: "include"
     }),
     refetchOnReconnect: true,
-    tagTypes: ["documents", "document"],
+    tagTypes: ["documents", "document", "ministry"],
     endpoints: (builder) => ({
         getDocuments: builder.query<Document[], null>({
             query: () => "documents",
@@ -20,8 +20,12 @@ export const documentsApi = createApi({
             query: (id) => `documents/${id}`,
             providesTags: ["document"]
         }),
+        getMinistryById: builder.query<Ministry, number>({
+            query: (id) => `ministries/${id}`,
+            providesTags: ["ministry"]
+        }),
     }),
     
 });
 
-export const { useGetDocumentsQuery, useGetDocumentByIdQuery } = documentsApi;
+export const { useGetDocumentsQuery, useGetDocumentByIdQuery, useGetMinistryByIdQuery } = documentsApi;
