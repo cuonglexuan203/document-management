@@ -13,7 +13,7 @@ export const documentsApi = createApi({
         // credentials: "include"
     }),
     refetchOnReconnect: true,
-    tagTypes: ["documents", "document", "ministry", "ministries"],
+    tagTypes: ["documents", "document", "ministry", "ministries", "ministriesDocuments"],
     endpoints: (builder) => ({
         getDocuments: builder.query<Document[], null>({
             query: () => "documents",
@@ -31,8 +31,12 @@ export const documentsApi = createApi({
             query: () => `ministries`,
             providesTags: ["ministries"]
         }),
+        getMinistriesDocuments: builder.query<MinistryDocument[], null>({
+            query: () => `ministries/documents`,
+            providesTags: ["ministriesDocuments"]
+        }),
     }),
 
 });
 
-export const { useGetDocumentsQuery, useGetDocumentByIdQuery, useGetMinistryByIdQuery, useGetMinistriesQuery } = documentsApi;
+export const { useGetDocumentsQuery, useGetDocumentByIdQuery, useGetMinistryByIdQuery, useGetMinistriesQuery, useGetMinistriesDocumentsQuery } = documentsApi;
