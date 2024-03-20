@@ -3,11 +3,9 @@ package vn.edu.hcmute.documentmanagement.dto;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.*;
-import vn.edu.hcmute.documentmanagement.model.Document;
 import vn.edu.hcmute.documentmanagement.model.Ministry;
 import vn.edu.hcmute.documentmanagement.model.Role;
 import vn.edu.hcmute.documentmanagement.model.User;
-import vn.edu.hcmute.documentmanagement.util.CustomDate;
 
 import java.util.Date;
 import java.util.List;
