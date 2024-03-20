@@ -9,3 +9,9 @@ export interface Document {
     ministry: string,
 
 }
+
+export interface Ministry{
+    id: string,
+    name: string
+    documents: Document[],
+}
