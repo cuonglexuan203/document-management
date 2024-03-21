@@ -1,21 +1,16 @@
 package vn.edu.hcmute.documentmanagement.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.hcmute.documentmanagement.dto.LoginRequestDto;
+import vn.edu.hcmute.documentmanagement.dto.UserDto;
 import vn.edu.hcmute.documentmanagement.model.User;
 import vn.edu.hcmute.documentmanagement.service.UserService;
+import vn.edu.hcmute.documentmanagement.util.CustomResponse;
 
 import java.util.Base64;
 
@@ -32,7 +27,7 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequestDto body){
+    public ResponseEntity<UserDto> login(@Valid @RequestBody LoginRequestDto body){
         String username = body.getUsername();
         String password = body.getPassword();
         //
@@ -43,11 +38,11 @@ public class AuthController {
         //
         String basicAuth = username + ":" + password;
         String basicAuthEncoded = Base64.getEncoder().encodeToString(basicAuth.getBytes());
-        return ResponseEntity.ok().header("Authorization", basicAuthEncoded).build();
+        return ResponseEntity.ok().header("Authorization", basicAuthEncoded).body(UserDto.of(user));
     }
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(){
-        return ResponseEntity.ok().header("Authorization",null).build();
+        return ResponseEntity.ok().header("Authorization",null).body(CustomResponse.ok("Logout successfully"));
     }
 }

@@ -5,7 +5,7 @@ import {
   useGetDocumentsQuery,
   useGetMinistryByIdQuery,
 } from "../../_store/services/documentApi";
-import { showLoading, hideLoading } from "../../_store/features/statusSlide";
+import { showLoading, hideLoading } from "../../_store/features/authSlide";
 import { useAppDispatch } from "../../_store/hooks";
 import { Navbar } from "@nextui-org/react";
 import NavBar from "../../_components/NavBar";

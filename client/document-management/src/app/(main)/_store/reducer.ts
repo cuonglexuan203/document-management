@@ -1,9 +1,12 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import sessionStorage from "redux-persist/es/storage/session";
 import { persistReducer } from "redux-persist";
 import { documentsApi } from "./services/documentApi";
-import statusReducer from "./features/statusSlide";
+import authReducer from "./features/authSlide"
+import userReducer from "./features/userSlide"
+import statusReducer from "./features/statusSlide"
+import { authApi } from "./services/authApi";
+import { ministriesApi } from "./services/ministriesApi";
 
 const rootPersistConfig = {
     key: 'root',
@@ -19,8 +22,12 @@ const tempCartPersistConfig = {
 }
 
 const rootReducer = combineReducers({
+    user: userReducer,
+    auth: authReducer,
     status: statusReducer,
-    [documentsApi.reducerPath]: documentsApi.reducer
+    [documentsApi.reducerPath]: documentsApi.reducer,
+    [ministriesApi.reducerPath]: ministriesApi.reducer,
+    [authApi.reducerPath]: authApi.reducer
 
 })
 

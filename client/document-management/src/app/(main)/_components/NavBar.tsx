@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  MinistryDocument,
   useGetDocumentsQuery,
-  useGetMinistriesQuery,
 } from "../_store/services/documentApi";
+import {
+  MinistryDocument,
+  useGetMinistriesQuery,
+  useGetMinistryByIdQuery,
+} from "../_store/services/ministriesApi"
+
 import { useAppDispatch } from "../_store/hooks";
 
 function SideNav({ sidebarOpen, setSidebarOpen }: any) {

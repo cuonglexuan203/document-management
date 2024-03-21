@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class UserDto {
+public class AdminUserDto {
 
     @Min(value=0)
     private long id;
@@ -29,33 +29,45 @@ public class UserDto {
     @Email(message = "email must follow the standard conventions")
     private String email;
 
+    @Size(min = 5, max = 20, message = "Username should be 6-20 characters long")
+    @Column(name = "username", unique = true)
+    private String username;
+
+
+    @NotBlank(message = "Password is mandatory")
+    @Min(value = 8, message = "Password should be at least 8 characters long")
+    @Column(name = "pw")
+    private String password;
+
     @NotNull(message = "user must belongs to a ministry")
     private String ministry;
 
     @Min(value = 1, message = "user must have at least one role")
-    private List<String> roles;
+    private long roleId;
 
-    public static UserDto of(@NotNull User user) {
-        UserDto userDto = UserDto.builder()
+    public static AdminUserDto of(@NotNull User user) {
+        AdminUserDto userDto = AdminUserDto.builder()
                 .id(user.getId())
                 .fullName(user.getFullName())
                 .birthday(user.getBirthday())
                 .email(user.getEmail())
                 .ministry(user.getMinistry().getName())
-                .roles(user.getRoles().stream().map(ele -> ele.getRole().name()).toList()).build();
+                .roleId(user.getId()).build();
         return userDto;
     }
 
-    public static List<UserDto> of(List<User> users){
-        List<UserDto> userDtos = users.stream().map(UserDto::of).toList();
+    public static List<AdminUserDto> of(List<User> users){
+        List<AdminUserDto> userDtos = users.stream().map(AdminUserDto::of).toList();
         return userDtos;
     }
-    public static User toUser(UserDto userDto, Role role, Ministry ministry) {
+    public static User toUser(AdminUserDto userDto, Role role, Ministry ministry) {
         User doc = User.builder()
                 .id(userDto.getId())
                 .fullName(userDto.getFullName())
                 .birthday(userDto.getBirthday())
                 .email(userDto.getEmail())
+                .username(userDto.getUsername())
+                .password(userDto.getPassword())
                 .build();
         doc.addMinistry(ministry);
         doc.addRole(role);

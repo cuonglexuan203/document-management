@@ -12,12 +12,15 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class MinistryDocumentDto {
     @NotNull
+    private  long id;
+    @NotNull
     private String ministry;
     @NotNull
     private List<DocumentDto> documents;
 
     public static MinistryDocumentDto of(@NotNull Ministry ministry){
         MinistryDocumentDto ministryDocumentDto = MinistryDocumentDto.builder()
+                .id(ministry.getId())
                 .ministry(ministry.getName())
                 .documents(DocumentDto.of(ministry.getDocuments())).build();
         return ministryDocumentDto;
