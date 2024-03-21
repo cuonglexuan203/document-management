@@ -8,91 +8,20 @@ import Image from "next/image";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { RootState } from "../_store/store";
-
-import { removeUser, updateUser } from "../_store/features/userSlide";
+import {
+  toggleIsUserMenuOpen,
+  toggleIsSearching,
+} from "../_store/features/navBarSlide";
+import { UserInfo, removeUser, updateUser } from "../_store/features/userSlide";
 import {
   signOut as signOuter,
   signIn as signInter,
+  Auth,
 } from "../_store/features/authSlide";
 import Link from "next/link";
 
 //
-const notificationInfo = [
-  {
-    "id": 22,
-    "invoiceId": "12311FVEB4F1V",
-    "snearkerName": "Nike Crotaphytus collaris",
-    "paymentStatus": "SUCCESS",
-    "deliveryStatus": "SHIPPED",
-    "time": "2005-11-29 21:37:35"
-  }, {
-    "id": 23,
-    "invoiceId": "22311FVEB4F1V",
-    "snearkerName": "Adidas Ammospermophilus nelsoni",
-    "paymentStatus": "PAYMENT EXPIRED",
-    "deliveryStatus": "IN TRANSIT",
-    "time": "2038-03-10 07:04:54"
-  }, {
-    "id": 24,
-    "invoiceId": "32311FVEB4F1V",
-    "snearkerName": "New Balance Mustela nigripes",
-    "paymentStatus": "PAYMENT EXPIRED",
-    "deliveryStatus": "PENDING",
-    "time": "1932-01-16 05:18:59"
-  }
-  // }, {
-  //   "id": 25,
-  //   "invoiceId": "42311FVEB4F1V",
-  //   "snearkerName": "Puma Pelecans onocratalus",
-  //   "paymentStatus": "WAITING FOR PAYMENT",
-  //   "deliveryStatus": "PENDING",
-  //   "time": "2050-09-20 13:21:08"
-  // }, {
-  //   "id": 26,
-  //   "invoiceId": "52311FVEB4F1V",
-  //   "snearkerName": "Reebok Ramphastos tucanus",
-  //   "paymentStatus": "WAITING FOR PAYMENT",
-  //   "deliveryStatus": "PENDING",
-  //   "time": "2012-10-09 18:59:56"
-  // }, {
-  //   "id": 27,
-  //   "invoiceId": "62311FVEB4F1V",
-  //   "snearkerName": "Nike Bison bison",
-  //   "paymentStatus": "WAITING FOR PAYMENT",
-  //   "deliveryStatus": "SHIPPED",
-  //   "time": "1936-07-05 07:36:51"
-  // }, {
-  //   "id": 28,
-  //   "invoiceId": "72311FVEB4F1V",
-  //   "snearkerName": "Adidas Panthera pardus",
-  //   "paymentStatus": "SUCCESS",
-  //   "deliveryStatus": "SHIPPED",
-  //   "time": "1971-12-31 19:59:53"
-  // }, {
-  //   "id": 29,
-  //   "invoiceId": "82311FVEB4F1V",
-  //   "snearkerName": "New Balance Pytilia melba",
-  //   "paymentStatus": "PAYMENT EXPIRED",
-  //   "deliveryStatus": "IN TRANSIT",
-  //   "time": "1992-07-10 23:12:48"
-  // }, {
-  //   "id": 30,
-  //   "invoiceId": "92311FVEB4F1V",
-  //   "snearkerName": "Puma Carphophis sp.",
-  //   "paymentStatus": "WAITING FOR PAYMENT",
-  //   "deliveryStatus": "SHIPPED",
-  //   "time": "2087-09-29 06:21:42"
-  // }, {
-  //   "id": 31,
-  //   "invoiceId": "102311FVEB4F1V",
-  //   "snearkerName": "Reebok Phoenicopterus chilensis",
-  //   "paymentStatus": "CANCEL",
-  //   "deliveryStatus": "SHIPPED",
-  //   "time": "2080-02-06 14:45:09"
-  // }
-]
-//
-const NavBar = () => {
+const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -107,23 +36,30 @@ const NavBar = () => {
   const isAdmin: boolean = useAppSelector(state => state.auth.isAdmin);
   //
 
-  const authData = useAppSelector((state) => state.auth);
-  const userInfo = useAppSelector((state) => state.user.info);
+  const authData: Auth = useAppSelector((state) => state.auth);
+  const userInfo: UserInfo = useAppSelector((state) => state.user.info);
   //
   //
   const handleSearchSubmit = (
     e: FormEvent<HTMLFormElement> | MouseEvent<HTMLDivElement>
   ) => {
     e.preventDefault();
-    router.push(`/search?q=${searchQuery}`);
+    router.push(`/searching?q=${searchQuery}`);
   };
 
 
+  const handleCloseUserMenu = () => {
+    if (isUserMenuOpen) {
+      dispatch(toggleIsUserMenuOpen());
+    }
+  };
 
   return (
     <nav
       className="sticky top-0 z-[1000] w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
-
+      onClick={() => {
+        handleCloseUserMenu();
+      }}
     >
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between relative">
@@ -359,7 +295,7 @@ const NavBar = () => {
               ></div>
             </div>
             {/* User */}
-            {authData.isLogging || authData.isOAuth ? (
+            {authData.isLogging ? (
               <div className="relative flex items-center ml-3">
                 {/* Avatar */}
                 <div>
@@ -369,7 +305,10 @@ const NavBar = () => {
                     id="user-menu-button-2"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-2"
-
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch(toggleIsUserMenuOpen());
+                    }}
                   >
                     <span className="sr-only">
                       Open user menu
@@ -390,10 +329,7 @@ const NavBar = () => {
                       className="text-sm text-gray-900 dark:text-white font-bold"
                       role="none"
                     >
-                      {userInfo.firstName +
-                        userInfo.lastName
-                        ? userInfo.firstName
-                        : ""}
+                      {userInfo.fullName}
                     </p>
                     <p
                       className="text-sm font-medium text-sky-600 truncate dark:text-gray-300"
@@ -416,7 +352,7 @@ const NavBar = () => {
                         href="/orders"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
-                        Order History
+                        My Document
                       </Link>
                     </li>
                     {isAdmin && (
@@ -434,7 +370,6 @@ const NavBar = () => {
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         onClick={() => {
-
                           dispatch(removeUser());
                           dispatch(signOuter());
                         }}
@@ -461,4 +396,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Header;
