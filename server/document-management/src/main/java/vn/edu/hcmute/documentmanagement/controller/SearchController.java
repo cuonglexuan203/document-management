@@ -35,7 +35,7 @@ public class SearchController {
         return ResponseEntity.ok(SearchDto.of(documentService.getDocumentByTitle(keyword, pageable)));
     }
 
-    @GetMapping
+    @GetMapping("/ministries")
     public ResponseEntity<SearchDto> searchDocumentByTitleAndMinistry(@RequestParam(name = "q",defaultValue = "", required = false) String keyword,
                                                                        @RequestParam(name = "page",defaultValue = "0",required = false) String ministry){
         return ResponseEntity.ok(SearchDto.of(documentService.getDocumentByTitleAndMinistry(keyword, ministry)));
