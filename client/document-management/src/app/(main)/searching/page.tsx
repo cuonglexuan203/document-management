@@ -1,3 +1,4 @@
+
 import React from "react";
 import Filter from "../_components/Filter";
 import Search from "../_components/Search";
@@ -10,5 +11,6 @@ const SearchingPage = () => {
     </div>
   );
 };
+
 
 export default SearchingPage;
