@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Filter from "../_components/Filter";
+import Search from "../_components/Search";
 
 const SearchingPage = () => {
-    return (
-        <div>SearchingPage</div>
-    )
-}
+  return (
+    <div>
+      <Filter />
+      <Search />
+    </div>
+  );
+};
 
-export default SearchingPage
+export default SearchingPage;
