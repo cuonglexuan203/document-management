@@ -14,6 +14,7 @@ import vn.edu.hcmute.documentmanagement.model.Document;
 import vn.edu.hcmute.documentmanagement.service.DocumentService;
 import vn.edu.hcmute.documentmanagement.service.UserService;
 
+import java.lang.annotation.Repeatable;
 import java.util.List;
 
 @Slf4j
@@ -32,6 +33,12 @@ public class SearchController {
         int size = 10;
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(SearchDto.of(documentService.getDocumentByTitle(keyword, pageable)));
+    }
+
+    @GetMapping("/ministries")
+    public ResponseEntity<SearchDto> searchDocumentByTitleAndMinistry(@RequestParam(name = "q",defaultValue = "", required = false) String keyword,
+                                                                       @RequestParam(name = "page",defaultValue = "0",required = false) String ministry){
+        return ResponseEntity.ok(SearchDto.of(documentService.getDocumentByTitleAndMinistry(keyword, ministry)));
     }
 
 
