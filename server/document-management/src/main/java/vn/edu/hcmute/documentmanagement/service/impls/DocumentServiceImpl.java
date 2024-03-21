@@ -8,19 +8,19 @@ import vn.edu.hcmute.documentmanagement.exception.ResourceNotFoundException;
 import vn.edu.hcmute.documentmanagement.model.Document;
 import vn.edu.hcmute.documentmanagement.model.Ministry;
 import vn.edu.hcmute.documentmanagement.repository.DocumentRepository;
+import vn.edu.hcmute.documentmanagement.repository.MinistryRepository;
 import vn.edu.hcmute.documentmanagement.service.DocumentService;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class DocumentServiceImpl implements DocumentService {
     private final DocumentRepository docRepo;
-    public DocumentServiceImpl(DocumentRepository docRepo) {
+    private final MinistryRepository ministryRepository;
+    public DocumentServiceImpl(DocumentRepository docRepo, MinistryRepository ministryRepository) {
         this.docRepo = docRepo;
+        this.ministryRepository = ministryRepository;
     }
 
     @Override
@@ -86,6 +86,28 @@ public class DocumentServiceImpl implements DocumentService {
     public List<Document> getDocumentByTitleAndMinistry(String title, Ministry ministry) {
         return docRepo.findByTitleContainingIgnoreCaseAndMinistry(title, ministry);
     }
+
+    @Override
+    public List<Document> getDocumentByTitleAndMinistry(String title, String ministriesInput) {
+        String[] ministryTitles = ministriesInput.split(", ");
+        List<Document> results = new ArrayList<>();
+
+        for (String ministryTitle : ministryTitles) {
+            // Assuming you have a method to retrieve Ministry by title
+            Ministry ministry = ministryRepository.findByNameContainingIgnoreCase(ministryTitle).get(0);
+
+            if (ministry != null) {
+                List<Document> temp = docRepo.findByTitleContainingIgnoreCaseAndMinistry(title, ministry);
+                results.addAll(temp);
+            } else {
+                System.out.println("Ministry not found for title: " + ministryTitle);
+            }
+        }
+
+        return results;
+    }
+
+
 
     @Override
     public List<Document> getDocumentByTitleAndMinistry(String title, Ministry ministry, Pageable paginator) {

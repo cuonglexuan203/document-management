@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomResponse> addDocument(@RequestBody AdminUserDto userDto) {
+    public ResponseEntity<CustomResponse> addUser(@RequestBody AdminUserDto userDto) {
         CustomResponse response = validateMutationUser(userDto);
         int statusCode = response.getStatus();
         switch (statusCode) {
@@ -110,7 +110,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CustomResponse> deleteDocument(@PathVariable long id) {
+    public ResponseEntity<CustomResponse> deleteUser(@PathVariable long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok(CustomResponse.ok("Successfully deleted"));
     }

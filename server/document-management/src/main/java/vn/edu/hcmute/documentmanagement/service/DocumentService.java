@@ -22,6 +22,7 @@ public interface DocumentService {
     List<Document> getDocumentByMinistry(Ministry ministry);
     List<Document> getDocumentByMinistry(Ministry ministry, Pageable paginator);
     List<Document> getDocumentByTitleAndMinistry(String title, Ministry ministry);
+    List<Document> getDocumentByTitleAndMinistry(String title, String ministry);
     List<Document> getDocumentByTitleAndMinistry(String title, Ministry ministry, Pageable paginator);
     List<Document> getDocumentByTimeRange(Date start, Date end);
     List<Document> getDocumentByTimeRange(Date start, Date end, Pageable paginator);

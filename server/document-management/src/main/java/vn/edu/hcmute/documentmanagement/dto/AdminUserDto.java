@@ -51,6 +51,8 @@ public class AdminUserDto {
                 .fullName(user.getFullName())
                 .birthday(user.getBirthday())
                 .email(user.getEmail())
+                .username(user.getUsername())
+                .password(user.getPassword())
                 .ministry(user.getMinistry().getName())
                 .roleId(user.getId()).build();
         return userDto;
