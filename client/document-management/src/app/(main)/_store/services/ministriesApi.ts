@@ -1,10 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Document, Ministry } from "../../_utils/types";
 
-export interface MinistryDocument {
-    ministry: Ministry;
-    documents: Document[];
-}
 
 const BASE_URL = "http://localhost:5000/api/ministries/";
 
