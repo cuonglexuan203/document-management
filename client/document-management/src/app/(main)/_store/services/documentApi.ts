@@ -6,6 +6,11 @@ export interface MinistryDocument {
     documents: Document[],
 }
 
+export interface SearchingResponse {
+    document: Document[],
+    totalPages: number
+}
+
 export const documentsApi = createApi({
     reducerPath: "documentsApi",
     baseQuery: fetchBaseQuery({
@@ -23,6 +28,10 @@ export const documentsApi = createApi({
             query: (id) => `documents/${id}`,
             providesTags: ["document"]
         }),
+        getDocumentBySearch: builder.query<Document[], string>({
+            query: (query) => `search?${query}`,
+            providesTags: ["documents"]
+        }),
         getMinistryById: builder.query<Ministry, number>({
             query: (id) => `ministries/${id}`,
             providesTags: ["ministry"]
@@ -39,4 +48,4 @@ export const documentsApi = createApi({
 
 });
 
-export const { useGetDocumentsQuery, useGetDocumentByIdQuery, useGetMinistryByIdQuery, useGetMinistriesQuery, useGetMinistriesDocumentsQuery } = documentsApi;
+export const { useGetDocumentsQuery, useGetDocumentByIdQuery, useGetDocumentBySearchQuery, useGetMinistryByIdQuery, useGetMinistriesQuery, useGetMinistriesDocumentsQuery } = documentsApi;

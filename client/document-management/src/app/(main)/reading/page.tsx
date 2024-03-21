@@ -1,15 +1,16 @@
 "use client";
-import React, {useEffect, useState} from 'react'
-import {useGetDocumentByIdQuery, useGetDocumentsQuery} from "@/app/(main)/_store/services/documentApi";
-import {useAppDispatch} from "@/app/(main)/_store/hooks";
-import {hideLoading, showLoading} from "@/app/(main)/_store/features/statusSlide";
+import React, { useEffect, useState } from 'react'
+import { useGetDocumentByIdQuery, useGetDocumentsQuery } from "@/app/(main)/_store/services/documentApi";
+import { useAppDispatch } from "@/app/(main)/_store/hooks";
+import { hideLoading, showLoading } from "@/app/(main)/_store/features/statusSlide";
+import Document from '../_components/Document';
 
 const ReadingPage = () => {
     const {
         isLoading,
         isFetching,
         isSuccess,
-        data: document = new Document(),
+        data: document = null,
         error,
     } = useGetDocumentByIdQuery(1);
     const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ const ReadingPage = () => {
                     <a href="{link_destination}" className="font-normal text-blue-500 dark:text-gray-400 text-3xl">{document.ministry}</a>
                     <p className="font-normal text-gray-700 dark:text-gray-400 text-3xl">Time added: {document.addedTime}</p>
 
-                    
+
                 </a>
                 <div className="flex justify-center">
                     <iframe
