@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex flex-row ">
+      <div className="flex flex-row">
         <div className="flex-2 pr-2">
           <NavBar
             sidebarOpen={sidebarOpen}
