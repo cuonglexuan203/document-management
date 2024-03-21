@@ -29,6 +29,12 @@ public class UserDto {
     @Email(message = "email must follow the standard conventions")
     private String email;
 
+    @NotBlank(message = "Username is mandatory")
+    private String username;
+
+    @NotBlank(message = "Password is mandatory")
+    private String password;
+
     @NotNull(message = "user must belongs to a ministry")
     private String ministry;
 
@@ -41,6 +47,8 @@ public class UserDto {
                 .fullName(user.getFullName())
                 .birthday(user.getBirthday())
                 .email(user.getEmail())
+                .username(user.getUsername())
+                .password(user.getPassword())
                 .ministry(user.getMinistry().getName())
                 .roles(user.getRoles().stream().map(ele -> ele.getRole().name()).toList()).build();
         return userDto;
@@ -56,6 +64,8 @@ public class UserDto {
                 .fullName(userDto.getFullName())
                 .birthday(userDto.getBirthday())
                 .email(userDto.getEmail())
+                .username(userDto.getUsername())
+                .password(userDto.getPassword())
                 .build();
         doc.addMinistry(ministry);
         doc.addRole(role);

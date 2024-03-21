@@ -48,7 +48,7 @@ public class User {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @Builder.Default
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 
     @EqualsAndHashCode.Exclude

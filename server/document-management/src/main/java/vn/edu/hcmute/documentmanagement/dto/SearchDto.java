@@ -20,4 +20,9 @@ public class SearchDto {
     public static SearchDto of(Page<Document> documentPage) {
         return SearchDto.builder().document(DocumentDto.of(documentPage.getContent())).totalPages(documentPage.getNumberOfElements()).build();
     }
+
+    public static SearchDto of(List<Document> documents) {
+        return SearchDto.builder().document(DocumentDto.of(documents)).build();
+    }
+
 }
