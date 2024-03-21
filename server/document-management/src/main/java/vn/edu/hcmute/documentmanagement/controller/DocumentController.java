@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.hcmute.documentmanagement.dto.DocumentDto;
 import vn.edu.hcmute.documentmanagement.model.Document;
@@ -47,7 +48,8 @@ public class DocumentController {
     public ResponseEntity<List<DocumentDto>> getDocumentsByUserId(@PathVariable long userId) {
         return ResponseEntity.ok(DocumentDto.of(documentService.getDocumentByUserId(userId)));
     }
-    private CustomResponse validateMutationDocument(@NotNull DocumentDto docDto){
+
+    private CustomResponse validateMutationDocument(@NotNull DocumentDto docDto) {
         long userId = docDto.getUserId();
         String ministryName = docDto.getMinistry();
         log.info("Provided document - userid: {}, ministry: {}", userId, ministryName);
@@ -62,21 +64,22 @@ public class DocumentController {
         }
         return CustomResponse.ok("validated document");
     }
+
     @PostMapping
     public ResponseEntity<CustomResponse> addDocument(@RequestBody DocumentDto docDto) {
         CustomResponse response = validateMutationDocument(docDto);
         int statusCode = response.getStatus();
         switch (statusCode) {
-            case 200:{
+            case 200: {
                 break;
             }
-            case 400:{
+            case 400: {
                 return ResponseEntity.badRequest().body(response);
             }
-            case 404:{
+            case 404: {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
             }
-            case 500:{
+            case 500: {
                 break;
             }
         }
@@ -92,16 +95,16 @@ public class DocumentController {
         CustomResponse response = validateMutationDocument(docDto);
         int statusCode = response.getStatus();
         switch (statusCode) {
-            case 200:{
+            case 200: {
                 break;
             }
-            case 400:{
+            case 400: {
                 return ResponseEntity.badRequest().body(response);
             }
-            case 404:{
+            case 404: {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
             }
-            case 500:{
+            case 500: {
                 break;
             }
         }
@@ -113,7 +116,7 @@ public class DocumentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CustomResponse> deleteDocument(@PathVariable long id){
+    public ResponseEntity<CustomResponse> deleteDocument(@PathVariable long id) {
         documentService.deleteDocument(id);
         return ResponseEntity.ok(CustomResponse.ok("Successfully deleted"));
     }
