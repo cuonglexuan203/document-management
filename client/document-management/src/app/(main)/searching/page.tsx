@@ -1,12 +1,16 @@
-import React from 'react'
-import Searchlist from '../_components/Searchlist'
+
+import React from "react";
+import Filter from "../_components/Filter";
+import Search from "../_components/Search";
 
 const SearchingPage = () => {
-    return (
-        <div>
-            <Searchlist/>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Filter />
+      <Search />
+    </div>
+  );
+};
 
-export default SearchingPage
+
+export default SearchingPage;
