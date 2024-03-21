@@ -54,17 +54,21 @@ const UserRow = ({
       <td className="px-6 py-4">
         {/* <!-- Modal toggle --> */}
 
-        <button
+        <a
+          href="#"
+          type="button"
           onClick={() => {
             setModalData({
               user: u,
             });
             setIsEditModalOpen(true);
           }}
-          className="w-20 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+          data-modal-target="UserModal"
+          data-modal-show="UserModal"
+          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
         >
-          Edit
-        </button>
+          Edit user
+        </a>
         <br></br>
         <a
           href="#"
