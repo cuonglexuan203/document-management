@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.edu.hcmute.documentmanagement.dto.UserDto;
+import vn.edu.hcmute.documentmanagement.dto.AdminUserDto;
 import vn.edu.hcmute.documentmanagement.model.Ministry;
 import vn.edu.hcmute.documentmanagement.model.Role;
 import vn.edu.hcmute.documentmanagement.model.User;
@@ -31,17 +31,17 @@ public class UserController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<UserDto>> getAllUsers() {
-        return ResponseEntity.ok(UserDto.of(userService.getAllUsers()));
+    public ResponseEntity<List<AdminUserDto>> getAllUsers() {
+        return ResponseEntity.ok(AdminUserDto.of(userService.getAllUsers()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable long id) {
+    public ResponseEntity<AdminUserDto> getUserById(@PathVariable long id) {
         String message = "User not found with id: " + id;
-        return ResponseEntity.ok(UserDto.of(userService.getUserByIdOrElseThrow(id, message)));
+        return ResponseEntity.ok(AdminUserDto.of(userService.getUserByIdOrElseThrow(id, message)));
     }
 
-    private CustomResponse validateMutationUser(@NotNull UserDto userDto) {
+    private CustomResponse validateMutationUser(@NotNull AdminUserDto userDto) {
         long roleId = userDto.getRoleId();
         String ministryName = userDto.getMinistry();
 
@@ -58,7 +58,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomResponse> addDocument(@RequestBody UserDto userDto) {
+    public ResponseEntity<CustomResponse> addDocument(@RequestBody AdminUserDto userDto) {
         CustomResponse response = validateMutationUser(userDto);
         int statusCode = response.getStatus();
         switch (statusCode) {
@@ -78,13 +78,13 @@ public class UserController {
         String messageError = "Role id not found";
         Role role = roleService.getRoleByIdOrElseThrow(userDto.getRoleId(), messageError);
         Ministry ministry = ministryService.getMinistryByName(userDto.getMinistry()).getFirst();
-        User user = UserDto.toUser(userDto, role, ministry);
+        User user = AdminUserDto.toUser(userDto, role, ministry);
         userService.addUser(user);
         return ResponseEntity.ok(CustomResponse.ok("Successfully added"));
     }
 
     @PutMapping
-    public ResponseEntity<CustomResponse> updateUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<CustomResponse> updateUser(@RequestBody AdminUserDto userDto) {
         CustomResponse response = validateMutationUser(userDto);
         int statusCode = response.getStatus();
         switch (statusCode) {
@@ -104,7 +104,7 @@ public class UserController {
         String messageError = "Role id not found";
         Role role = roleService.getRoleByIdOrElseThrow(userDto.getRoleId(), messageError);
         Ministry ministry = ministryService.getMinistryByName(userDto.getMinistry()).getFirst();
-        User user = UserDto.toUser(userDto, role, ministry);
+        User user = AdminUserDto.toUser(userDto, role, ministry);
         userService.updateUser(user);
         return ResponseEntity.ok(CustomResponse.ok("Successfully updated"));
     }

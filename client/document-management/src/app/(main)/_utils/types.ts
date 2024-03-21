@@ -10,8 +10,14 @@ export interface Document {
 
 }
 
-export interface Ministry{
+export interface Ministry {
     id: string,
     name: string
     documents: Document[],
+}
+
+export interface CustomResponse {
+    message: string,
+    status: number,
+    timestamp: number
 }
